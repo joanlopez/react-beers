@@ -2,21 +2,15 @@
   "compilerOptions": {
     "baseUrl": "http://localhost:3000/",
     "outDir": "build/dist",
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es6",
-    "lib": ["es6", "dom"],
     "sourceMap": true,
-    "allowJs": true,
+    "inlineSourceMap": false,
+    "inlineSources": false,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "src",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
     "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+    "noImplicitAny": false
   },
   "exclude": [
     "node_modules",

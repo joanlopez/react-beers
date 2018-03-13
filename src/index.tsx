@@ -8,13 +8,19 @@ import logger from 'redux-logger';
 
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import reducers from './reducers/index';
+import reducers from './redux/reducers';
+
+import createSagaMiddleware from 'redux-saga';
+import { mainSaga } from './sagas/main';
 
 import Home from './components/Home';
 import './index.css';
 
+// Building the sagas middleware
+const sagas = createSagaMiddleware();
+
 // Building the array with all the middlewares
-const middlewares: Middleware[] = [logger];
+const middlewares: Middleware[] = [sagas, logger];
 
 // Build the store with the reducers and the middlewares
 const store = createStore(
@@ -23,6 +29,9 @@ const store = createStore(
     }),
     applyMiddleware(...middlewares)
 );
+
+// Running the main entry point for sagas
+sagas.run(mainSaga);
 
 ReactDOM.render(
     <Provider store={store}>
