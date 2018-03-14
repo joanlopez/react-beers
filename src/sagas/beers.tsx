@@ -8,7 +8,14 @@ const mock = new MockAdapter(axios);
 
 // Mocking GET /beers
 mock.onGet('/beers').reply(200, {
-    beers: [ 'John Smith', 'Samuel Adams']
+    beers: [
+        {
+            name: 'John Smith'
+        },
+        {
+            name: 'Samuel Adams'
+        }
+    ]
 });
 
 const axiosConfig = {
@@ -24,7 +31,7 @@ export function* listenBeerRelatedActions() {
 function* fetchBeers(action): any {
     try {
         const response = yield call(axiosInstance.get, 'beers');
-        const beers = JSON.parse(response.data);
+        const beers = response.data.beers;
         yield put({type: BEERS_FETCH_DONE, beers});
     } catch (error) {
         yield put({type: BEERS_FETCH_FAILED, error});

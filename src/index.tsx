@@ -14,7 +14,6 @@ import createSagaMiddleware from 'redux-saga';
 import { mainSaga } from './sagas/main';
 
 import Home from './components/Home';
-import './index.css';
 
 // Building the sagas middleware
 const sagas = createSagaMiddleware();
